@@ -26,7 +26,7 @@
 
 	<bean id="persistenceUnitManager"
 		class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
-		<property name="persistenceXmlLocation" value="/WEB-INF/spring/persistence.xml"></property>
+		<property name="persistenceXmlLocation" value="classpath:persistence.xml"></property>
 		<property name="defaultDataSource" ref="dataSource"></property>
 	</bean>
 
@@ -43,5 +43,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:annotation-config></context:annotation-config>
 
+	<!--  DECLARATION DES BEANS -->
+	<import resource="classpath:config/beans-config.xml" />
 
 </beans>
