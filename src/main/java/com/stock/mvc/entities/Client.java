@@ -19,7 +19,7 @@ public class Client implements Serializable{
 	private String prenom;
 	private String photo;
 	private String mail;
-	
+	private String adresse;
 	
 	@OneToMany(mappedBy="client") 
 	private List<CommandeClient> commandeClients;
@@ -72,6 +72,18 @@ public class Client implements Serializable{
 
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+
+
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 	
 	

@@ -43,8 +43,7 @@ public class GenericDaoImpl<E> implements IGenericDao<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<E> selectAll() {
-		Query query = em.createQuery("SELECT * FROM " + type.getSimpleName()
-				+ " t");
+		Query query = em.createQuery("FROM " + type.getSimpleName()+ " t");
 		return query.getResultList();
 	}
 
