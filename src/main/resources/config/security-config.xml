@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:s="http://www.springframework.org/schema/s"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+	
+	<s:http auto-config="true">
+		<s:intercept-url pattern="/client/" access="ROLE_ADMIN, ROLE_USER" /> <!-- POUR CONSULTER LA PAGE -->
+		<s:intercept-url pattern="/client/**" access="ROLE_ADMIN" /> <!-- POUR TOUTE AUTRE OPERATION SUR LA PAGE-->
+		
+		<s:form-login login-page="/" default-target-url="/home" authentication-failure-url="/failedLogin" />
+		
+		<s:access-denied-handler error-page="/403"/>
+		
+		<s:logout logout-success-url="/" delete-cookies="JSESSIONID"/>
+	</s:http>
+	
+	<s:authentication-manager>
+		<s:authentication-provider>
+			<s:password-encoder hash="md5" />
+			<s:jdbc-user-service data-source-ref=""/>
+		</s:authentication-provider>
+	</s:authentication-manager>
+	
+	
+</beans>

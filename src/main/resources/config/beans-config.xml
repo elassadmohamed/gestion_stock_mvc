@@ -3,8 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
-	<bean id="articleDao" class="com.stock.mvc.dao.impl.ArticleDaoImpl"
-		init-method="initIt" destroy-method="cleanUp" />
+	<bean id="articleDao" class="com.stock.mvc.dao.impl.ArticleDaoImpl"/>
 	<bean id="articleService" class="com.stock.mvc.services.impl.ArticleServiceImpl">
 		<property name="dao" ref="articleDao"></property>
 	</bean>

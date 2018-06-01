@@ -1,10 +1,12 @@
 package com.stock.mvc.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Utilisateur implements Serializable{
@@ -13,11 +15,15 @@ public class Utilisateur implements Serializable{
 	@Id
 	@GeneratedValue
 	private Long idUtilisateur;
+	
 	private String nom;
 	private String prenom;
 	private String mail;
 	private String motDepasse;
 	private String photo;
+	@OneToMany(mappedBy="utilisateur")
+	List<Roles> roles;
+	
 	public Long getIdUtilisateur() {
 		return idUtilisateur;
 	}
