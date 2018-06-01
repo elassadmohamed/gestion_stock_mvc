@@ -71,7 +71,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">Client</h1>
+						<h6 class="page-header">Client</h6>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -81,9 +81,13 @@
 					<div class="col-lg-12">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="<c:url value="/client/nouveau"/>" class="fa fa-plus">&nbsp;Ajouter</a></li>
-								<li class="breadcrumb-item"><a href="#" class="fa fa-download">&nbsp;Exporter</a></li>
-								<li class="breadcrumb-item active"><a href="#" class="fa fa-upload">&nbsp;Importer</a></li>
+								<c:url value="/client/nouveau" var="urlNouveau" scope="page" />
+								<li class="breadcrumb-item"><a href="${urlNouveau}"
+									class="fa fa-plus">&nbsp;Ajouter</a></li>
+								<li class="breadcrumb-item"><a href="#"
+									class="fa fa-download">&nbsp;Exporter</a></li>
+								<li class="breadcrumb-item active"><a href="#"
+									class="fa fa-upload">&nbsp;Importer</a></li>
 							</ol>
 						</nav>
 					</div>
@@ -117,10 +121,28 @@
 												<td>${client.getPrenom() }</td>
 												<td class="center">${client.getAdresse()}</td>
 												<td>${client.getMail()}</td>
-												<td>
-													<a href="#" class="fa fa-edit">&nbsp;Modifier</a>&nbsp;|&nbsp;
-													<a href="#" class="fa fa-trash">&nbsp;Supprimer</a>
-												</td>
+												<td><c:url value="/client/modifier/${client.getIdClient()}" var="urlModif" /> <a href="${urlModif}" class="fa fa-edit">&nbsp;Modifier</a>&nbsp;|
+												&nbsp; <a href="javascript:void(0);" class="fa fa-trash" data-toggle="modal" data-target="#modalClient${client.getIdClient() }">&nbsp;Supprimer</a>
+													<div class="modal fade" id="modalClient${client.getIdClient() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																	<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+																</div>
+																<div class="modal-body">Confirmation</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+																	<c:url value="/client/supprimer/${client.getIdClient()}" var="urlSuppression" />"
+																	<a href="${urlSuppression }" class="btn btn-primary">
+																		<i class="fa fa-trash"></i>&nbsp;Confirmer
+																	</a>
+																</div>
+															</div>
+															<!-- /.modal-content -->
+														</div>
+														<!-- /.modal-dialog -->
+													</div> <!-- /.modal --></td>
 											</tr>
 										</c:forEach>
 

@@ -59,7 +59,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">Nouveau client</h1>
+						<h6 class="page-header">Nouveau client</h6>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -70,9 +70,11 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">DataTables Advanced Tables</div>
 							<!-- /.panel-heading -->
-							<div class="panel-body">
-								<f:form modelAttribute="client" action="/client/nouveau"
-									method="post" enctype="multipart/form-data">
+							<c:url value="/client/enregistrer" var="urlEnregister" scope="page"/>
+							<f:form modelAttribute="client" action="/mvc/client/enregistrer" method="post" enctype="multipart/form-data" role="form">
+								<f:hidden path="idClient"/>
+								<f:hidden path="photo"/>
+								<div class="panel-body">
 									<div class="form-group">
 										<label>Nom</label>
 										<f:input path="nom" class="form-control" placeHolder="Nom" />
@@ -92,18 +94,18 @@
 										<f:input path="mail" class="form-control" placeHolder="Mail" />
 									</div>
 									<div class="form-group">
-										<label>Photo</label> 
-										<input type="file" name="file">
+										<label>Photo</label> <input type="file" name="file">
 									</div>
-								</f:form>
-							</div>
-							<div class="panel-footer">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-save">&nbsp;Enregistrer</i>
-								</button>
-								<a href="<c:url value="/client/"/>" class="btn btn-danger"><i
-									class="fa fa-arrow-left">&nbsp;Annuler</i></a>
-							</div>
+
+								</div>
+								<div class="panel-footer">
+									<button type="submit" class="btn btn-primary">
+										<i class="fa fa-save">&nbsp;Enregistrer</i>
+									</button>
+									<a href="<c:url value="/client/"/>" class="btn btn-danger"><i
+										class="fa fa-arrow-left">&nbsp;Annuler</i></a>
+								</div>
+							</f:form>
 							<!-- /.panel-body -->
 						</div>
 						<!-- /.panel -->

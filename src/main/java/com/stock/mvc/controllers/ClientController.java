@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -44,18 +45,56 @@ public class ClientController {
 		return "client/ajouterClient";
 	}
 
-	@RequestMapping(value = "/nouveau", method = RequestMethod.POST)
+	@RequestMapping(value = "/enregistrer")
 	public String enregistrerClient(Model model, Client client,
-			MultipartFile file) throws Exception {
+			MultipartFile file)  {
 		String photoUrl = null;
 		if (client != null) {
-			if (file != null) {
-				if (!file.isEmpty()) {
-					InputStream stream = file.getInputStream();
+			if (file != null && !file.isEmpty()) {
+				InputStream stream=null;
+				try{
+					stream = file.getInputStream();
 					photoUrl = flickService.savePhoto(stream, client.getNom());
+					client.setPhoto(photoUrl);
+				}catch(Exception e){
+					e.printStackTrace();
+				}finally{
+					try {
+						stream.close();
+					} catch (IOException e) { 
+						e.printStackTrace();
+					}
 				}
 			}
-			clientService.save(client);
+			
+			if(client.getIdClient()!=null){
+				clientService.update(client);
+			}else{
+				clientService.save(client);
+			}
+			
+		}
+		return "redirect:/client/";
+	}
+	
+	@RequestMapping(value="/modifier/{idClient}")
+	public String modifierClient(Model model,@PathVariable Long idClient){
+		if(idClient!=null){
+			Client client=clientService.getById(idClient);
+			if(client!=null){
+				model.addAttribute("client",client);
+			}
+		}
+		return "client/ajouterClient";
+	}
+	
+	@RequestMapping(value="/supprimer/{idClient}")
+	public String supprimerClient(Model model,@PathVariable Long idClient){
+		if(idClient!=null){
+			Client client=clientService.getById(idClient);
+			if(client !=null){
+				clientService.remove(idClient);
+			}
 		}
 		return "redirect:/client/";
 	}
