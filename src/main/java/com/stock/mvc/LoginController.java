@@ -33,7 +33,12 @@ public class LoginController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "blank/blank";
+		return "login/login";
 	}
+	
+	@RequestMapping(value="/failedlogin")
+	public String failedLogin(){
+		return "login/login";
+		}
 	
 }

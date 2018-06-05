@@ -21,6 +21,8 @@ public class Utilisateur implements Serializable{
 	private String mail;
 	private String motDepasse;
 	private String photo;
+	private boolean actived;
+	
 	@OneToMany(mappedBy="utilisateur")
 	List<Roles> roles;
 	
@@ -60,6 +62,19 @@ public class Utilisateur implements Serializable{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
+	public boolean isActived() {
+		return actived;
+	}
+	public void setActived(boolean actived) {
+		this.actived = actived;
+	}
+	public List<Roles> getRoles() {
+		return roles;
+	}
+	public void setRoles(List<Roles> roles) {
+		this.roles = roles;
+	}
+	
 	
 	
 	
