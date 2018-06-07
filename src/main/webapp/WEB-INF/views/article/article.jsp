@@ -56,7 +56,6 @@
 <body>
 
 	<div id="wrapper">
-
 		<!-- Navigation -->
 		<nav class="navbar navbar-default navbar-static-top" role="navigation"
 			style="margin-bottom: 0">
@@ -65,13 +64,12 @@
 			<%@ include file="/WEB-INF/views/menu_left/leftMenu.jsp"%>
 			<!-- /.navbar-static-side -->
 		</nav>
-
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h6 class="page-header">Client</h6>
+						<h6 class="page-header">Article</h6>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
@@ -81,7 +79,7 @@
 					<div class="col-lg-12">
 						<nav aria-label="breadcrumb">
 							<ol class="breadcrumb">
-								<c:url value="/client/nouveau" var="urlNouveau" scope="page" />
+								<c:url value="/article/nouveau" var="urlNouveau" scope="page" />
 								<li class="breadcrumb-item"><a href="${urlNouveau}"
 									class="fa fa-plus">&nbsp;Ajouter</a></li>
 								<li class="breadcrumb-item"><a href="#"
@@ -92,7 +90,6 @@
 						</nav>
 					</div>
 				</div>
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
@@ -104,28 +101,28 @@
 									id="dataTables-example">
 									<thead>
 										<tr>
-											<th>photo</th>
-											<th>nom</th>
-											<th>prenom</th>
-											<th>adresse</th>
-											<th>mail</th>
+											<th>Code article</th>
+											<th>Désignation</th>
+											<th>Prix unitaire HT</th>
+											<th>Taux TVA</th>
+											<th>Prix unitaire TTC</th>
 											<th>action</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach items="${clients}" var="client">
+										<c:forEach items="${articles}" var="article">
 											<tr class="odd gradeX">
-												<td class="center"><img src="${client.getPhoto()}"
-													width="50px" height="50px"></td>
-												<td>${client.getNom()}</td>
-												<td>${client.getPrenom() }</td>
-												<td class="center">${client.getAdresse()}</td>
-												<td>${client.getMail()}</td>
-												<td><c:url value="/client/modifier/${client.getIdClient()}" var="urlModif" /> 
-												<a href="${urlModif}" class="fa fa-edit">&nbsp;Modifier</a>
-												&nbsp;|&nbsp; 
-												<a href="javascript:void(0);" class="fa fa-trash" data-toggle="modal" data-target="#modalClient${client.getIdClient() }">&nbsp;Supprimer</a>
-													<div class="modal fade" id="modalClient${client.getIdClient() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												<td class="center"><img src="${article.getCodeArticle()}" width="50px" height="50px"></td>
+												<td>${article.getDesignation()}</td>
+												<td>${article.getPrixUnitaireHT() }</td>
+												<td class="center">${article.getTauxTva()}</td>
+												<td>${article.getPrixUnitaireTTC()}</td>
+												<td>
+													<c:url value="/article/modifier/${article.getIdArticle()}" var="urlModif" /> 
+													<a href="${urlModif}" class="fa fa-edit">&nbsp;Modifier</a>
+													&nbsp;|&nbsp; 
+													<a href="javascript:void(0);" class="fa fa-trash" data-toggle="modal" data-target="#modalArticle${article.getIdArticle() }">&nbsp;Supprimer</a>
+													<div class="modal fade" id="modalArticle${article.getIdArticle() }" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 														<div class="modal-dialog">
 															<div class="modal-content">
 																<div class="modal-header">
@@ -135,7 +132,7 @@
 																<div class="modal-body">Confirmation</div>
 																<div class="modal-footer">
 																	<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-																	<c:url value="/client/supprimer/${client.getIdClient()}" var="urlSuppression" />"
+																	<c:url value="/article/supprimer/${article.getIdArticle()}" var="urlSuppression" />"
 																	<a href="${urlSuppression }" class="btn btn-primary">
 																		<i class="fa fa-trash"></i>&nbsp;Confirmer
 																	</a>
@@ -173,7 +170,7 @@
 					<!-- /.col-lg-12 -->
 				</div>
 				<!-- /.row -->
-
+				
 			</div>
 			<!-- /.container-fluid -->
 		</div>
@@ -219,3 +216,4 @@
 </body>
 
 </html>
+

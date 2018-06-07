@@ -37,6 +37,7 @@ public class ClientController {
 		return "client/client";
 	}
 
+	//Afficher la page de saisit du nouveau client	
 	@RequestMapping(value = "/nouveau", method = RequestMethod.GET)
 	public String ajouterClient(Model model) {
 		Client client = new Client();
@@ -82,7 +83,8 @@ public class ClientController {
 		if(idClient!=null){
 			Client client=clientService.getById(idClient);
 			if(client!=null){
-				model.addAttribute("client",client);
+				//model. addAttribute("client",client);
+				clientService.update(client);
 			}
 		}
 		return "client/ajouterClient";

@@ -2,6 +2,7 @@ package com.stock.mvc.services.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.stock.mvc.dao.IClientDao;
@@ -10,6 +11,7 @@ import com.stock.mvc.services.IClientService;
 
 @Transactional
 public class ClientServiceImpl implements IClientService{
+	
 	private IClientDao dao;
 	
 	

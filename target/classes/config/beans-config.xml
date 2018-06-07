@@ -12,11 +12,19 @@
 	<bean id="categoryService" class="com.stock.mvc.services.impl.CategoryServiceImpl">
 		<property name="dao" ref="categoryDao"></property>
 	</bean>
-
+	
+	
 	<bean id="clientDao" class="com.stock.mvc.dao.impl.ClientDaoImpl" />
 	<bean id="clientService" class="com.stock.mvc.services.impl.ClientServiceImpl">
-		<property name="dao" ref="clientDao"></property>
+		<property name="dao" ref="clientDao"></property> 
+		<!--
+			dans la classe ClientServiceImpl il y'a l'attribut dao qui 
+			doit être initialisé par une instance d'une classe qui implémente IClientDao
+			on peut omettre la ligne ci-dessus en ajoutant @Autowired dans l'attribut en question
+		-->
 	</bean>
+	
+
 
 	<bean id="commandeClientDao" class="com.stock.mvc.dao.impl.CommandeClientDaoImpl" />
 	<bean id="commandeClientDaoService" class="com.stock.mvc.services.impl.CommandeClientServiceImpl">

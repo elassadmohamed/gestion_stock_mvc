@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.stock.mvc.dao.ICommandeClientDao;
 import com.stock.mvc.entities.CommandeClient;
+import com.stock.mvc.entities.LigneCommandeClient;
 import com.stock.mvc.services.ICommandeClientService;
 
 @Transactional
@@ -62,5 +63,7 @@ public class CommandeClientServiceImpl implements ICommandeClientService{
 	public int findCountBy(String paramName, String paramValue) {
 		return dao.findCountBy(paramName, paramValue);
 	}
+
+	
 
 }

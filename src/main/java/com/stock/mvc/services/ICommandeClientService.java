@@ -3,6 +3,7 @@ package com.stock.mvc.services;
 import java.util.List;
 
 import com.stock.mvc.entities.CommandeClient;
+import com.stock.mvc.entities.LigneCommandeClient;
 
 public interface ICommandeClientService {
 	public CommandeClient save(CommandeClient entity);
@@ -14,4 +15,5 @@ public interface ICommandeClientService {
 	public CommandeClient findOne(String paramName,Object paramValue);
 	public CommandeClient findOne(String[] paramNames,Object[] paramValues);
 	public int findCountBy(String paramName,String paramValue);
+	
 }

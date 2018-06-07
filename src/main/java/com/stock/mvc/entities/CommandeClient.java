@@ -1,6 +1,7 @@
 package com.stock.mvc.entities;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class CommandeClient implements Serializable{
@@ -35,7 +39,9 @@ public class CommandeClient implements Serializable{
 	@OneToMany(mappedBy="commandeClient")
 	private List<LigneCommandeClient> ligneCommandeClients;
 	
-
+	@Transient
+	private BigDecimal totalCommande;
+	
 
 
 	public Long getIdCommandeClient() {
@@ -70,6 +76,8 @@ public class CommandeClient implements Serializable{
 		this.client = client;
 	}
 
+	
+	@JsonIgnore
 	public List<LigneCommandeClient> getLigneCommandeClients() {
 		return ligneCommandeClients;
 	}
@@ -80,5 +88,14 @@ public class CommandeClient implements Serializable{
 	}
 	
 	
+	public BigDecimal getTotalCommande(){
+		if(!ligneCommandeClients.isEmpty()){
+			for(LigneCommandeClient ligneCommandeClient:ligneCommandeClients){
+				BigDecimal totalLigne=ligneCommandeClient.getQuantite().multiply(ligneCommandeClient.getPrixUniaitre());
+				totalCommande=totalCommande.add(totalLigne);
+			}
+		}
+		return totalCommande;
+	}
 	
 }
