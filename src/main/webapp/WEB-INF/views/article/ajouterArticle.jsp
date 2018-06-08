@@ -59,7 +59,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-12">
-						<h6 class="page-header">Nouvelle catégorie</h6>
+						<h6 class="page-header">Nouvel article</h6>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>

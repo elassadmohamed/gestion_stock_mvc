@@ -96,7 +96,7 @@
 											<td>${cde.getTotalCommande()}</td>
 											<td>
 											<c:url value="/commandeclient/details/${cde.getIdCommandeClient()}" var="urlModif" /> 
-													<a href="${urlDetails}" class="fa fa-th-list"></a>
+													<a href="javascript:void(0);" onclick="updateDetailCommande(${cde.getLigneCommandeJson()})"><i class="fa fa-th-list"></i></a>
 													&nbsp;|&nbsp; 
 											<c:url value="/commandeclient/modifier/${cde.getIdCommandeClient()}" var="urlModif" /> 
 													<a href="${urlModif}" class="fa fa-edit"></a>
@@ -143,7 +143,7 @@
 							<div class="panel-body">
 								<table width="100%"
 									class="table table-striped table-bordered table-hover"
-									id="dataTables-example">
+									id="tableDetailCommande">
 									<thead>
 										<tr>
 											<th>Articles</th>
@@ -185,6 +185,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
+    
+    <script src="<%=request.getContextPath() %>/resources/javascript/commandeClient.js"></script>
 
 </body>
 

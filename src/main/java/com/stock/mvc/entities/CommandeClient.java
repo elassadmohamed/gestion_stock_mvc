@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Entity
 public class CommandeClient implements Serializable{
@@ -36,8 +38,12 @@ public class CommandeClient implements Serializable{
 	@JoinColumn(name="idClient")
 	private Client client;
 	
+	
 	@OneToMany(mappedBy="commandeClient")
 	private List<LigneCommandeClient> ligneCommandeClients;
+	
+
+
 	
 	@Transient
 	private BigDecimal totalCommande;
@@ -82,20 +88,44 @@ public class CommandeClient implements Serializable{
 		return ligneCommandeClients;
 	}
 
-	public void setLigneCommandeClients(
-			List<LigneCommandeClient> ligneCommandeClients) {
+	public void setLigneCommandeClients(List<LigneCommandeClient> ligneCommandeClients) {
 		this.ligneCommandeClients = ligneCommandeClients;
 	}
 	
 	
 	public BigDecimal getTotalCommande(){
+		totalCommande=BigDecimal.ZERO;
 		if(!ligneCommandeClients.isEmpty()){
 			for(LigneCommandeClient ligneCommandeClient:ligneCommandeClients){
-				BigDecimal totalLigne=ligneCommandeClient.getQuantite().multiply(ligneCommandeClient.getPrixUniaitre());
-				totalCommande=totalCommande.add(totalLigne);
+				if(ligneCommandeClient.getQuantite()!=null && ligneCommandeClient.getPrixUniaitre()!=null){
+					BigDecimal totalLigne=ligneCommandeClient.getQuantite().multiply(ligneCommandeClient.getPrixUniaitre());
+					totalCommande=totalCommande.add(totalLigne);
+				}
+				
 			}
 		}
 		return totalCommande;
 	}
+
+	@Transient
+	public String getLigneCommandeJson() {
+		if(!ligneCommandeClients.isEmpty()){
+			ObjectMapper mapper=new ObjectMapper();
+			try {
+				return mapper.writeValueAsString(ligneCommandeClients).replace("\"", "'");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return "";
+	}
+
+
+
+
+	
+
+	
 	
 }

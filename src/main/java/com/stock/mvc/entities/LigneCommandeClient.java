@@ -73,6 +73,9 @@ public class LigneCommandeClient implements Serializable{
 	public void setPrixUniaitre(BigDecimal prixUniaitre) {
 		this.prixUniaitre = prixUniaitre;
 	}
+
+
+
 	
 	
 	

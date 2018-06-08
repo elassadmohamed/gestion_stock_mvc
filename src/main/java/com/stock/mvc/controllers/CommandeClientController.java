@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.stock.mvc.entities.Client;
 import com.stock.mvc.entities.CommandeClient;
 import com.stock.mvc.entities.LigneCommandeClient;
 import com.stock.mvc.services.IArticleService;
@@ -43,7 +44,18 @@ public class CommandeClientController {
 			}
 		}
 		model.addAttribute("commandesClient",commandesClient);
+		
 		return "commandeClient/commandeclient";
 	}
+	
+	@RequestMapping(value="/nouveau")
+	public String nouvelleCommande(Model mode){
+		List<Client> clients=clientService.selectAll();
+		if(clients.isEmpty()){
+			clients=new ArrayList<Client>();
+		}
+		return "commandeClient/nouvellecommande";
+	}
+	
 	
 }
