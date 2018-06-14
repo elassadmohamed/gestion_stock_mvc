@@ -112,7 +112,7 @@
 									<tbody>
 										<c:forEach items="${articles}" var="article">
 											<tr class="odd gradeX">
-												<td class="center"><img src="${article.getCodeArticle()}" width="50px" height="50px"></td>
+												<td class="center">${article.getCodeArticle()}</td>
 												<td>${article.getDesignation()}</td>
 												<td>${article.getPrixUnitaireHT() }</td>
 												<td class="center">${article.getTauxTva()}</td>

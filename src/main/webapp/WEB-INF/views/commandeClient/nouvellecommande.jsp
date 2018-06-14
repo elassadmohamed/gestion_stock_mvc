@@ -58,38 +58,35 @@
                 <div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">DataTables Advanced Tables</div>
+							<div class="panel-heading">Commande</div>
 							<!-- /.panel-heading -->
-							<c:url value="/article/enregistrer" var="urlEnregister" scope="page" />
-							<form  action="" method="post" role="form">
-								<hidden path="idArticle" />
-								<div class="panel-body">
-									<div class="form-group">
-										<label>Code</label>
-										<input  class="form-control" placeHolder="Code" />
+							<div class="panel-body">
+								<form  action="" method="post" role="form">
+									<div class="form-row">
+										<div class="col-md-4 mb-3">
+											<label>Code</label>
+											<input  class="form-control" placeHolder="Code" value="${codeCde}" disabled/>
+										</div>
+										<div class="col-md-4 mb-3">
+											<label>Date</label>
+											<input  class="form-control" placeHolder="Date" value="${dateCde}" disabled/>
+										</div>
+										<div class="col-md-4 mb-3">
+											<label>Client</label>
+											<select class="form-control" id="listClients">
+												<c:forEach items="${clients}" var="clt">
+													<option value="${clt.getIdClient()}">${clt.getNom()}</option>
+												</c:forEach>
+											</select>
+										</div>
 									</div>
-									<div class="form-group">
-										<label>Date</label>
-										<input  class="form-control" placeHolder="Date" />
+									<br/><br/><br/><br/> 
+									<div class="panel-footer">
+										<button type="submit" class="btn btn-primary"><i class="fa fa-save">&nbsp;Enregistrer</i></button>
+										<a href="<c:url value="/commandeClient/"/>" class="btn btn-danger"><i class="fa fa-arrow-left">&nbsp;Annuler</i></a>
 									</div>
-	
-									<div class="form-group">
-										<label>Client</label>
-										<select class="form-control" id="listClients">
-											<c:forEach items="${ clients}" var="clt">
-												<option value="${clt.getIdClient()}">${clt.getNom()}</option>
-											</c:forEach>
-										</select>
-									</div>		
-								</div>
-								<div class="panel-footer">
-									<button type="submit" class="btn btn-primary">
-										<i class="fa fa-save">&nbsp;Enregistrer</i>
-									</button>
-									<a href="<c:url value="/commandeClient/"/>" class="btn btn-danger"><i
-										class="fa fa-arrow-left">&nbsp;Annuler</i></a>
-								</div>
-							</form>
+								</form>
+							</div>
 							<!-- /.panel-body -->
 						</div>
 						<!-- /.panel -->
@@ -97,6 +94,45 @@
 					<!-- /.col-lg-12 -->
 				</div>
 				<!-- /.row -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">détails de la commande</div>
+							<!-- /.panel-heading -->
+								<div class="panel-body">
+									<div class="form-row">
+										<div class="col-md-4 mb-3">
+										<label>Articles</label>
+										<input class="form-control" type="text" id="codeArticle_search" placeholder="Saisir un code article"/>
+										</div>
+									<div class="col-md-4 mb-3">
+										<label>Not Found</label>
+									</div>
+								</div>
+								<br/><br/><br/><br/>
+								<table width="100%" class="table table-striped table-bordered table-hover" id="tableDetailNouvelleCommande">
+									<thead>
+										<tr>
+											<th>Articles</th>
+											<th>Quantité</th>
+											<th>Prix unitaire TTC</th>
+											<th>Total</th>
+											<th>action</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+
+									</tbody>
+								</table>
+								<!-- /.table-responsive -->
+							</div>
+							<!-- /.panel-body -->
+						</div>
+						<!-- /.panel -->
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
             </div>
             <!-- /.container-fluid -->
         </div>
@@ -116,6 +152,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<%=request.getContextPath() %>/resources/dist/js/sb-admin-2.js"></script>
+    
+     
+    <script src="<%=request.getContextPath() %>/resources/javascript/commandeClient.js"></script>
 
 </body>
 

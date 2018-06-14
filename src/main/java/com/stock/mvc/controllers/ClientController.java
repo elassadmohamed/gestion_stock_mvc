@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,8 @@ import com.stock.mvc.services.IFlickrService;
 @Controller
 @RequestMapping(value = "/client")
 public class ClientController {
-
+	private static Logger logger = Logger.getLogger(ClientController.class);
+	
 	@Autowired
 	private IClientService clientService;
 
@@ -29,6 +31,11 @@ public class ClientController {
 
 	@RequestMapping(value = "/")
 	public String client(Model model) {
+		logger.debug("msg de debogage");
+		logger.info("msg d'information");
+		logger.warn("msg d'avertissement");
+		logger.error("msg d'erreur");
+		logger.fatal("msg d'erreur fatale");
 		List<Client> clients = clientService.selectAll();
 		if (clients == null) {
 			clients = new ArrayList<Client>();
@@ -40,6 +47,7 @@ public class ClientController {
 	//Afficher la page de saisit du nouveau client	
 	@RequestMapping(value = "/nouveau", method = RequestMethod.GET)
 	public String ajouterClient(Model model) {
+		
 		Client client = new Client();
 		client.setNom("Mohamed");
 		model.addAttribute("client", client);

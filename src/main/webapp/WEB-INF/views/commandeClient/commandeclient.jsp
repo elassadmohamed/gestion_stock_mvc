@@ -150,12 +150,9 @@
 											<th>Quantité</th>
 											<th>Prix unitaire TTC</th>
 											<th>Total</th>
-											<th>action</th>
 										</tr>
 									</thead>
-									<tbody>
-										
-
+									<tbody>		
 									</tbody>
 								</table>
 								<!-- /.table-responsive -->
