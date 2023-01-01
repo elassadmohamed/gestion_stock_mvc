@@ -23,9 +23,11 @@ import com.stock.mvc.services.IFlickrService;
 public class ClientController {
 	private static Logger logger = Logger.getLogger(ClientController.class);
 	
+	/*The clientService*/
 	@Autowired
 	private IClientService clientService;
 
+	/*The flickService*/
 	@Autowired
 	private IFlickrService flickService;
 

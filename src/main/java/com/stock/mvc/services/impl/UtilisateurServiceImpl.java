@@ -7,6 +7,7 @@ import com.stock.mvc.entities.Utilisateur;
 import com.stock.mvc.services.IUtilisateurService;
 
 public class UtilisateurServiceImpl implements IUtilisateurService{
+	/* The dao*/
 	private IUtilisateurDao dao;
 	
 	public void setDao(IUtilisateurDao dao) {
