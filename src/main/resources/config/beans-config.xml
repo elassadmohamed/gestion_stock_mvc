@@ -53,7 +53,7 @@
 		class="com.stock.mvc.services.impl.LigneCommandeFournisseurServiceImpl">
 		<property name="dao" ref="ligneCommandeFournisseurDao"></property>
 	</bean>
-
+	<!-- the ligneVenteDao -->
 	<bean id="ligneVenteDao" class="com.stock.mvc.dao.impl.LigneVenteDaoImpl" />
 	<bean id="ligneVenteDaoService" class="com.stock.mvc.services.impl.LigneVenteServiceImpl">
 		<property name="dao" ref="ligneVenteDao"></property>
