@@ -6,6 +6,9 @@ import com.stock.mvc.dao.IFlickrDao;
 import com.stock.mvc.services.IFlickrService;
 
 public class FlickrServiceImpl implements IFlickrService{
+	/*
+	* The daoFlickr
+	*/
 	private IFlickrDao dao;
 	
 	
