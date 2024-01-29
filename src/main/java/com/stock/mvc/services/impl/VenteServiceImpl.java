@@ -7,6 +7,9 @@ import com.stock.mvc.entities.Vente;
 import com.stock.mvc.services.IVenteService;
 
 public class VenteServiceImpl implements IVenteService{
+	/*
+	* The dao
+	*/
 	private IVenteDao dao;
 	
 	public void setDao(IVenteDao dao) {
