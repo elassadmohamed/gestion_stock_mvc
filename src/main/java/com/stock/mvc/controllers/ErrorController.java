@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping(value="/")
 public class ErrorController {
+	/*
+	* The REFERER
+	*/
 	private static final String REFERER="referer";
 	@RequestMapping(value="/403")
 	public String errorPage(Model model,HttpServletRequest request){
