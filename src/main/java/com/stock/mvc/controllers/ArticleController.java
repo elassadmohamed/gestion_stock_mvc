@@ -23,6 +23,9 @@ import com.stock.mvc.services.ICategoryService;
 @RequestMapping(value="/article")
 public class ArticleController {
 	
+	/*
+	* The articleService
+	*/
 	@Autowired
 	private IArticleService articleService;
 	
