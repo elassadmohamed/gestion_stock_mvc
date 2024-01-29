@@ -10,7 +10,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		FlickrDaoImpl flickr = new FlickrDaoImpl();
-		//flick.auth();
+		flick.auth();
 
 		try {
 			InputStream stream=new FileInputStream(new File("C:\\Users\\mei\\Desktop\\livre.jpg"));
